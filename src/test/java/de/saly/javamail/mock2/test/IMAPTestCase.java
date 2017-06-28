@@ -25,15 +25,8 @@
  **********************************************************************************************************************/
 package de.saly.javamail.mock2.test;
 
-import com.sun.mail.imap.IMAPFolder;
-import com.sun.mail.imap.IMAPStore;
-import de.saly.javamail.mock2.MailboxFolder;
-import de.saly.javamail.mock2.MockMailbox;
-import de.saly.javamail.mock2.Providers;
-import de.saly.javamail.mock2.test.support.MockTestException;
-import org.junit.Assert;
-import org.junit.Test;
-
+import java.util.Arrays;
+import java.util.Properties;
 import javax.mail.Flags.Flag;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -46,8 +39,15 @@ import javax.mail.event.MessageCountEvent;
 import javax.mail.event.MessageCountListener;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Arrays;
-import java.util.Properties;
+
+import com.sun.mail.imap.IMAPFolder;
+import com.sun.mail.imap.IMAPStore;
+import de.saly.javamail.mock2.MailboxFolder;
+import de.saly.javamail.mock2.MockMailbox;
+import de.saly.javamail.mock2.Providers;
+import de.saly.javamail.mock2.test.support.MockTestException;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class IMAPTestCase extends AbstractTestCase {
 
@@ -467,6 +467,30 @@ public class IMAPTestCase extends AbstractTestCase {
         inbox.open(Folder.READ_WRITE);
         final IMAPFolder imapInbox = (IMAPFolder) inbox;
         Assert.assertNull(imapInbox.getMessageByUID(666));
+    }
+
+    @Test
+    public void testGetMessages() throws Exception {
+        final MockMailbox mb = MockMailbox.get("hendrik@unknown.com");
+        final MailboxFolder mf = mb.getInbox();
+
+        final MimeMessage msg = new MimeMessage((Session) null);
+        msg.setSubject("Test");
+        msg.setFrom("from@sender.com");
+        msg.setText("Some text here ...");
+        msg.setRecipient(RecipientType.TO, new InternetAddress("hendrik@unknown.com"));
+        mf.add(msg);
+
+        final Store store = session.getStore("mock_imap");
+        store.connect("hendrik@unknown.com", null);
+        final Folder defaultFolder = store.getDefaultFolder();
+        final Folder inbox = defaultFolder.getFolder("INBOX");
+
+        inbox.open(Folder.READ_WRITE);
+
+        Assert.assertEquals(1, inbox.getMessageCount());
+        Assert.assertEquals(1, inbox.getMessages().length);
+        inbox.close(true);
     }
 
 }
