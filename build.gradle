@@ -1,0 +1,124 @@
+plugins {
+    id 'com.jfrog.bintray' version '1.7.3'
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven-publish'
+apply plugin: 'java-library-distribution'
+
+ext {
+    productVersion    = '0.6.0'
+    product           = 'javamail-mock3'
+    javaTarget        = JavaVersion.VERSION_1_8
+    libraries         = [
+        javaMail:  'com.sun.mail:javax.mail:1.5.6',
+        junit:     'junit:junit:4.12'
+    ]
+}
+
+idea {
+    project {
+        jdkName = javaTarget
+        languageLevel = javaTarget
+        vcs = 'Git'
+    }
+    module {
+        name = product
+    }
+}
+
+version = productVersion
+sourceCompatibility = javaTarget
+targetCompatibility = javaTarget
+
+// Change the output directory for the main source set back to the old path.
+// Remove it when IDEA and Eclipse support new layout.
+sourceSets.main.output.classesDir = new File(buildDir, "classes/main")
+sourceSets.test.output.classesDir = new File(buildDir, "classes/test")
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(libraries.javaMail)
+    testCompile(libraries.junit)
+}
+
+task sourcesJar(type: Jar, dependsOn: compileJava) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0'
+            distribution 'repo'
+        }
+    }
+    developers {
+        developer {
+            id 'golovnin'
+            name 'Andrej Golovnin'
+            email 'andrej.golovnin@gmail.com'
+        }
+    }
+    scm {
+        url 'https://github.com/golovnin/javamail-mock3'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.github.golovnin'
+            artifactId product
+            version productVersion
+
+            from components.java
+            artifact sourcesJar {
+                classifier 'sources'
+            }
+            artifact javadocJar {
+                classifier 'javadoc'
+            }
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', 'JavaMail Mock3')
+                root.appendNode('name', 'JavaMail Mock3')
+                root.appendNode('url', 'https://github.com/golovnin/javamail-mock3')
+                root.children().last() + pomConfig
+            }
+        }
+    }
+}
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['mavenJava']
+    pkg {
+        repo = 'maven'
+        name = product
+        userOrg = System.getenv('BINTRAY_USER')
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/golovnin/javamail-mock3'
+        labels = ['JavaMail', 'mail', 'mock']
+        version {
+            name = productVersion
+            vcsTag = productVersion
+            released = new java.util.Date()
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0'
+}
