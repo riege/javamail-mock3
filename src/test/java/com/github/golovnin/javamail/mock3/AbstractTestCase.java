@@ -19,23 +19,37 @@
  *  either express or implied. See the License for the
  *  specific language governing permissions and limitations under the License.
  */
-package com.sun.mail.pop3;
+package com.github.golovnin.javamail.mock3;
 
-import com.github.golovnin.javamail.mock3.POP3MockStore;
+import java.util.Properties;
+import javax.mail.Session;
 
-/**
- * this class is needed currently because com.sun.mail.pop3.POP3Folder has a
- * constructor with default visibility
- * See https://kenai.com/bugzilla/show_bug.cgi?id=6379
- */
-public class POP3MockFolder0 extends POP3Folder {
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 
-    // POP3 has only one Folder INBOX
-    private static final String INBOX = "INBOX";
+public abstract class AbstractTestCase {
 
-    // make constructor visible for subclasses
-    protected POP3MockFolder0(final POP3MockStore store) {
-        super(store, INBOX);
+    @Rule
+    public TestName name = new TestName();
+    protected Session session = null;
+
+    protected Properties getProperties() {
+        return new Properties();
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        Properties props = getProperties();
+        session = Session.getInstance(props);
+
+        MockMailbox.resetAll();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        session = null;
     }
 
 }
