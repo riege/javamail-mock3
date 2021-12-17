@@ -1,0 +1,43 @@
+name: release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: 8
+          cache: 'gradle'
+
+      - name: Determine Version
+        id: get_version
+        uses: battila7/get-version-action@v2
+
+      - name: Create release artifacts
+        run: ./gradlew -Pversion=${{ steps.get_version.outputs.version-without-v }} jar sourcesJar javadocJar
+
+      - name: Create release and upload artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          name: JavaMail Mock3 Library ${{ steps.get_version.outputs.version-without-v }}
+          files: |
+            build/libs/*.jar
+
+      - name: Publish artifacts to GitHub Packages
+        env:
+          PROJECT_URL: ${{ github.event.repository.url }}
+          MAVEN_PUBLISH_URL: https://maven.pkg.github.com/${{ github.repository }}
+          MAVEN_PUBLISH_USERNAME: ${{ github.actor }}
+          MAVEN_PUBLISH_PASSWORD: ${{ github.token }}
+        run: ./gradlew -Pversion=${{ steps.get_version.outputs.version-without-v }} publish

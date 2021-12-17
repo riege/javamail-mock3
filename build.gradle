@@ -27,7 +27,6 @@ idea {
     }
 }
 
-version = productVersion
 sourceCompatibility = javaTarget
 targetCompatibility = javaTarget
 
@@ -80,7 +79,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId 'com.github.golovnin'
             artifactId product
-            version productVersion
 
             from components.java
             artifact sourcesJar {
@@ -95,6 +93,15 @@ publishing {
                 root.appendNode('name', 'JavaMail Mock3')
                 root.appendNode('url', 'https://github.com/golovnin/javamail-mock3')
                 root.children().last() + pomConfig
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = System.getenv("MAVEN_PUBLISH_URL")
+            credentials {
+                username = System.getenv("MAVEN_PUBLISH_USERNAME")
+                password = System.getenv("MAVEN_PUBLISH_PASSWORD")
             }
         }
     }
