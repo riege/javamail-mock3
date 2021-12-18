@@ -535,10 +535,7 @@ public class IMAPMockFolder extends IMAPFolder implements
     }
 
     @Override
-    public synchronized void idle(boolean once) throws MessagingException {
-        assert Thread.holdsLock(this) : "Thread already hold folder lock, " +
-            "thats not supposed to be the case";
-
+    public void idle(boolean once) throws MessagingException {
         synchronized (this) { // blocks until folder lock available
             checkOpened();
             if (idleState == RUNNING) {
