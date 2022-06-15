@@ -21,7 +21,7 @@
  */
 package com.github.golovnin.javamail.mock3;
 
-import javax.mail.Provider;
+import jakarta.mail.Provider;
 
 public final class Providers {
 

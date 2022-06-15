@@ -23,9 +23,9 @@ package com.github.golovnin.javamail.mock3;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.mail.Address;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
+import jakarta.mail.Address;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
 
 public final class MockMailbox {
 

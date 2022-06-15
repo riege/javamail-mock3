@@ -23,11 +23,11 @@ package com.github.golovnin.javamail.mock3;
 
 import java.util.Collections;
 import java.util.Map;
-import javax.mail.Folder;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.URLName;
-import javax.mail.event.ConnectionEvent;
+import jakarta.mail.Folder;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.URLName;
+import jakarta.mail.event.ConnectionEvent;
 
 import com.sun.mail.pop3.POP3Store;
 

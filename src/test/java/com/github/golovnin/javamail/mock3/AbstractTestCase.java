@@ -22,7 +22,7 @@
 package com.github.golovnin.javamail.mock3;
 
 import java.util.Properties;
-import javax.mail.Session;
+import jakarta.mail.Session;
 
 import org.junit.After;
 import org.junit.Before;
