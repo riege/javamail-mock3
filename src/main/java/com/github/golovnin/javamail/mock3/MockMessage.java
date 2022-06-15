@@ -23,15 +23,15 @@ package com.github.golovnin.javamail.mock3;
 
 import java.util.Date;
 
-import javax.activation.DataHandler;
-import javax.mail.Address;
-import javax.mail.Flags;
-import javax.mail.Folder;
-import javax.mail.IllegalWriteException;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.internet.MimeMessage;
+import jakarta.activation.DataHandler;
+import jakarta.mail.Address;
+import jakarta.mail.Flags;
+import jakarta.mail.Folder;
+import jakarta.mail.IllegalWriteException;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.internet.MimeMessage;
 
 public final class MockMessage extends MimeMessage implements
     Comparable<MockMessage>
@@ -81,21 +81,21 @@ public final class MockMessage extends MimeMessage implements
     }
 
     @Override
-    public void addRecipient(javax.mail.Message.RecipientType type,
+    public void addRecipient(jakarta.mail.Message.RecipientType type,
         Address address) throws MessagingException
     {
         assertReadOnlyMessage();
     }
 
     @Override
-    public void addRecipients(javax.mail.Message.RecipientType type,
+    public void addRecipients(jakarta.mail.Message.RecipientType type,
         Address[] addresses) throws MessagingException
     {
         assertReadOnlyMessage();
     }
 
     @Override
-    public void addRecipients(javax.mail.Message.RecipientType type,
+    public void addRecipients(jakarta.mail.Message.RecipientType type,
         String addresses) throws MessagingException
     {
         assertReadOnlyMessage();
@@ -218,21 +218,21 @@ public final class MockMessage extends MimeMessage implements
     }
 
     @Override
-    public void setRecipient(javax.mail.Message.RecipientType type,
+    public void setRecipient(jakarta.mail.Message.RecipientType type,
         Address address) throws MessagingException
     {
         assertReadOnlyMessage();
     }
 
     @Override
-    public void setRecipients(javax.mail.Message.RecipientType type,
+    public void setRecipients(jakarta.mail.Message.RecipientType type,
         Address[] addresses) throws MessagingException
     {
         assertReadOnlyMessage();
     }
 
     @Override
-    public void setRecipients(javax.mail.Message.RecipientType type,
+    public void setRecipients(jakarta.mail.Message.RecipientType type,
         String addresses) throws MessagingException
     {
         assertReadOnlyMessage();

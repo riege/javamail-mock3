@@ -21,8 +21,8 @@
  */
 package com.github.golovnin.javamail.mock3;
 
-import javax.mail.Folder;
-import javax.mail.MessagingException;
+import jakarta.mail.Folder;
+import jakarta.mail.MessagingException;
 
 import com.sun.mail.imap.DefaultFolder;
 

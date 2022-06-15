@@ -25,12 +25,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import javax.mail.Folder;
-import javax.mail.MessagingException;
-import javax.mail.Quota;
-import javax.mail.Session;
-import javax.mail.URLName;
-import javax.mail.event.ConnectionEvent;
+import jakarta.mail.Folder;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Quota;
+import jakarta.mail.Session;
+import jakarta.mail.URLName;
+import jakarta.mail.event.ConnectionEvent;
 
 import com.sun.mail.imap.IMAPStore;
 

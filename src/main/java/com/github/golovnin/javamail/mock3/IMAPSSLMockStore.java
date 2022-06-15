@@ -21,8 +21,8 @@
  */
 package com.github.golovnin.javamail.mock3;
 
-import javax.mail.Session;
-import javax.mail.URLName;
+import jakarta.mail.Session;
+import jakarta.mail.URLName;
 
 public final class IMAPSSLMockStore extends IMAPMockStore {
 

@@ -29,13 +29,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
-import javax.mail.Flags;
-import javax.mail.Flags.Flag;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.UIDFolder;
-import javax.mail.internet.MimeMessage;
-import javax.mail.search.SearchTerm;
+import jakarta.mail.Flags;
+import jakarta.mail.Flags.Flag;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.UIDFolder;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.search.SearchTerm;
 
 public class MailboxFolder implements MockMessage.FlagChangeListener {
 

@@ -21,15 +21,15 @@
  */
 package com.github.golovnin.javamail.mock3;
 
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.URLName;
-import javax.mail.event.ConnectionEvent;
-import javax.mail.event.TransportEvent;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.Address;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.URLName;
+import jakarta.mail.event.ConnectionEvent;
+import jakarta.mail.event.TransportEvent;
+import jakarta.mail.internet.MimeMessage;
 
 public class MockTransport extends Transport {
 

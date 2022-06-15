@@ -27,13 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.mail.FetchProfile;
-import javax.mail.FolderClosedException;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.MethodNotSupportedException;
-import javax.mail.event.ConnectionEvent;
-import javax.mail.event.MessageChangedEvent;
+import jakarta.mail.FetchProfile;
+import jakarta.mail.FolderClosedException;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.MethodNotSupportedException;
+import jakarta.mail.event.ConnectionEvent;
+import jakarta.mail.event.MessageChangedEvent;
 
 import com.sun.mail.pop3.POP3MockFolder0;
 
