@@ -12,7 +12,7 @@ ext {
     javaTarget        = JavaVersion.VERSION_1_8
     libraries         = [
         javaMail:  'com.sun.mail:jakarta.mail:2.0.1',
-        junit:     'junit:junit:4.12'
+        junit:     'junit:junit:4.13.2'
     ]
 }
 
