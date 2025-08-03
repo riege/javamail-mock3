@@ -11,7 +11,7 @@ ext {
     product           = 'javamail-mock3'
     javaTarget        = JavaVersion.VERSION_1_8
     libraries         = [
-        javaMail:  'com.sun.mail:jakarta.mail:2.0.1',
+        javaMail:  'com.sun.mail:jakarta.mail:2.0.2',
         junit:     'junit:junit:4.12'
     ]
 }
