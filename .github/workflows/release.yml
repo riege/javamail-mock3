@@ -28,7 +28,7 @@ jobs:
         run: ./gradlew -Pversion=${{ steps.get_version.outputs.version-without-v }} jar sourcesJar javadocJar
 
       - name: Create release and upload artifacts
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           name: JavaMail Mock3 Library ${{ steps.get_version.outputs.version-without-v }}
           files: |
